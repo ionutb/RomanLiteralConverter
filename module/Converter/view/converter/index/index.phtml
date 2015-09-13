@@ -1,1 +1,8 @@
-index view place holder
+<div class="container">
+	<h2>Roman number representation</h2>
+	<p>Enter a number below and click <b>"GO"</b> to find out how the romans used to write it</p>
+	<form class="form-search" method="POST" action="<? echo $this->url('convert-route')?>">
+		<input name="number" type="text" class="input-lg search-query" style="text-align: center">
+		<button type="submit" class="btn btn-primary">GO</button>
+	</form>
+</div>

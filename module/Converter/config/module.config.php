@@ -8,7 +8,7 @@ return
 					'options' => array(
 						'route'    => '/',
 						'defaults' => array(
-							'controller' => 'Application\Controller\Index',
+							'controller' => 'Converter\Controller\Index',
 							'action'     => 'index',
 						),
 					),
@@ -16,10 +16,10 @@ return
 				'convert-route' => array(
 					'type'    => 'segment',
 					'options' => array(
-						'route'    => '/converter[/:action][/:id]',
+						'route'    => '/converter/:action',
+						'verb' => 'POST',
 						'constraints' => array(
 							'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
-							'id'     => '[0-9]+',
 						),
 						'defaults' => array(
 							'__NAMESPACE__' => 'Converter\Controller',

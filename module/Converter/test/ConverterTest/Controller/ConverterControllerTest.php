@@ -14,14 +14,27 @@ class ConverterControllerTest extends AbstractControllerTestCase
 		parent::setUp();
 	}
 
-	public function testConvertActionCanBeAccessed()
+	public function testCovertActionCanBeAccessed()
 	{
-		$this->dispatch('/converter/convert-to-roman/20');
+		$this->dispatch('/converter/convertToRoman', 'POST', array('number' => 20));
 		$this->assertResponseStatusCode(200);
 		$this->assertModuleName('Converter');
 		$this->assertControllerName('Converter\Controller\Index');
 		$this->assertControllerClass('IndexController');
 		$this->assertMatchedRouteName('convert-route');
-		$this->assertActionName('convert-to-roman');
+		$this->assertActionName('convertToRoman');
 	}
+
+	public function testIndexActionCanBeAccessed()
+	{
+		$this->dispatch('/');
+		$this->assertResponseStatusCode(200);
+		$this->assertModuleName('Converter');
+		$this->assertControllerName('Converter\Controller\Index');
+		$this->assertControllerClass('IndexController');
+		$this->assertMatchedRouteName('home');
+		$this->assertActionName('index');
+	}
+
+
 }

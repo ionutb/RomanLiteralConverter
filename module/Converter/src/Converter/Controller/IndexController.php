@@ -10,7 +10,7 @@ class IndexController extends AbstractActionController
 {
 	public  function convertToRomanAction()
 	{
-		$decimal = $this->params()->fromRoute('id');
+		$decimal = $this->params()->fromPost('number');
 		$convert = new Convert();
 
 		$romanNumber = $convert->convertToRoman($decimal);
