@@ -17,6 +17,8 @@ class Bootstrap
 {
 	protected static $serviceManager;
 
+	public static $appRoot;
+
 	public static function init()
 	{
 		$zf2ModulePaths = array(dirname(dirname(__DIR__)));
@@ -26,9 +28,8 @@ class Bootstrap
 		if (($path = static::findParentPath('module')) !== $zf2ModulePaths[0]) {
 			$zf2ModulePaths[] = $path;
 		}
-
+		static::$appRoot =  static::findParentPath('RomanLiteralConverter');
 		static::initAutoloader();
-
 		// use ModuleManager to load this module and it's dependencies
 		$config = array(
 			'module_listener_options' => array(

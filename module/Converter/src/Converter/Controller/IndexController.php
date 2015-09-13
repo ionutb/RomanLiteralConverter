@@ -3,11 +3,13 @@
 namespace Converter\Controller;
 
 use Zend\Mvc\Controller\AbstractActionController;
+use Zend\View\Model\ViewModel;
+
 class IndexController extends AbstractActionController
 {
 	public  function convertAction()
 	{
-		return 'convert action';
+		return new ViewModel();
 	}
 	public function getAutoloaderConfig()
 	{
