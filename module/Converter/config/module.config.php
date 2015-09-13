@@ -9,40 +9,26 @@ return
 						'route'    => '/',
 						'defaults' => array(
 							'controller' => 'Application\Controller\Index',
-							'action'     => 'index',
+							'action'     => 'index2',
 						),
 					),
 				),
-				// The following is a route to simplify getting started creating
-				// new controllers and actions without needing to create a new
-				// module. Simply drop new controllers in, and you can access them
-				// using the path /application/:controller/:action
 				'convert-route' => array(
-					'type'    => 'Literal',
+					'type'    => 'segment',
 					'options' => array(
-						'route'    => '/converter',
+						'route'    => '/converter[/:action][/:id]',
+						'constraints' => array(
+							'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+							'id'     => '[0-9]+',
+						),
 						'defaults' => array(
 							'__NAMESPACE__' => 'Converter\Controller',
 							'controller'    => 'Index',
-							'action'        => 'convert',
+							'action'        => 'convertToRoman',
 						),
+						'may_terminate' => true,
 					),
-					'may_terminate' => true,
-					'child_routes' => array(
-						'default' => array(
-							'type'    => 'Segment',
-							'options' => array(
-								'route'    => '/[:controller[/:action]]',
-								'constraints' => array(
-									'controller' => '[a-zA-Z][a-zA-Z0-9_-]*',
-									'action'     => '[a-zA-Z][a-zA-Z0-9_-]*',
-								),
-								'defaults' => array(
-								),
-							),
-						),
-					),
-				),
+				)
 			)
 		),
 		'controllers' => array(

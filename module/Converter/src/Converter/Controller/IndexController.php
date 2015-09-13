@@ -7,7 +7,7 @@ use Zend\View\Model\ViewModel;
 
 class IndexController extends AbstractActionController
 {
-	public  function convertAction()
+	public  function convertToRomanAction()
 	{
 		return new ViewModel();
 	}
