@@ -16,12 +16,12 @@ class ConverterControllerTest extends AbstractControllerTestCase
 
 	public function testConvertActionCanBeAccessed()
 	{
-		$this->dispatch('/converter');
+		$this->dispatch('/converter/convert/20');
 		$this->assertResponseStatusCode(200);
 		$this->assertModuleName('Converter');
 		$this->assertControllerName('Converter\Controller\Index');
 		$this->assertControllerClass('IndexController');
 		$this->assertMatchedRouteName('convert-route');
-		$this->assertActionName('convert');
+		$this->assertActionName('convertToRoman');
 	}
 }

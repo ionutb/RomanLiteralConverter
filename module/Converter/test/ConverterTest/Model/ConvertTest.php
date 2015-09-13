@@ -1,6 +1,6 @@
 <?php
-class ConvertTest extends PHPUnit_Framework_TestCase {
-
+class ConvertTest extends PHPUnit_Framework_TestCase
+{
 
 	private $knownValues = array(
 		[1, 'I'],
@@ -25,7 +25,7 @@ class ConvertTest extends PHPUnit_Framework_TestCase {
 		[3999, 'MMMCMXCIX']
 	);
 
-	private $badValues = array(-10, 0, 32.4, 4000);
+	private $badValues = array(-10, 0, 32.4, 4000, '', '-20', 'bad_value');
 
 
 	public function setUp()
