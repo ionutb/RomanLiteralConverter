@@ -30,19 +30,20 @@ class Convert
 	 */
 	public function convertToRoman($number)
 	{
-		if ($number <= 0)
-		{
-			throw new InvalidArgumentException("number must be positive");
-		}
 
 		if (!is_numeric($number))
 		{
-			throw new InvalidArgumentException("number must be numeric :)");
+			throw new InvalidArgumentException("number_not_numeric");
+		}
+
+		if ($number <= 0)
+		{
+			throw new InvalidArgumentException("number_not_positive");
 		}
 
 		if ($number > static::MAX_NUMBER)
 		{
-			throw new InvalidArgumentException("number must be less than 3999");
+			throw new InvalidArgumentException("number_too_big");
 		}
 
 		$result = '';

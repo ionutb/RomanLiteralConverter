@@ -1,8 +1,30 @@
 <div class="container">
 	<h2>Roman number representation</h2>
 	<p>Enter a number below and click <b>"GO"</b> to find out how the romans used to write it</p>
+	<?php if ($this->error)
+	{
+		?>
+		<span class="text-danger"><?php
+			switch ($this->error)
+			{
+				case 'number_not_positive':
+					echo 'Number must be positive!';
+					break;
+				case 'number_not_numeric':
+					echo 'Number must be numeric :)';
+					break;
+				case 'number_too_big':
+					echo 'Number cannot be greater than 3999!';
+					break;
+			}
+
+		?></span>
+	<?
+	}
+	?>
 	<form class="form-search" method="POST" action="<? echo $this->url('convert-route')?>">
-		<input name="number" type="text" class="input-lg search-query" style="text-align: center">
+		<input name="number" type="text" class="input-lg search-query" style="text-align: center" value="<?php echo $this->decimal?>">
 		<button type="submit" class="btn btn-primary">GO</button>
 	</form>
 </div>
+
