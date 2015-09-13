@@ -36,7 +36,7 @@ class ConvertTest extends PHPUnit_Framework_TestCase {
 		foreach ($this->knownValues as $item)
 		{
 			list($decimal, $romanLiteral) = $item;
-			$this->assertEquals($decimal, $converter->convertToRoman($romanLiteral));
+			$this->assertEquals($romanLiteral, $converter->convertToRoman($decimal));
 		}
 	}
 }

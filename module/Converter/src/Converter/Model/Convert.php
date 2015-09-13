@@ -1,9 +1,43 @@
 <?php
 namespace Converter\Model;
 
-class Convert {
+class Convert
+{
+	// we store numerals in an ordered array
+	private static $numeralMapping = array(
+		['M', 1000],
+		['CM', 900],
+		['D',  500],
+		['CD', 400],
+		['C',  100],
+		['XC', 90],
+		['L',  50],
+		['XL', 40],
+		['X',  10],
+		['IX', 9],
+		['V',  5],
+		['IV', 4],
+		['I',  1],
+	);
 
-	public function convertToRoman($decimal) {
-		return 1;
+	/**
+	 * @param $number convert a number into roman representation
+	 * @return string
+	 */
+	public function convertToRoman($number)
+	{
+		$result = '';
+		foreach (static::$numeralMapping as $map)
+		{
+			list ($literal, $decimal) = $map;
+ 			while ($number >= $decimal)
+			{
+				//concatenate roman letter for each substraction
+				$result .= $literal;
+				$number -= $decimal;
+			}
+		}
+		return $result;
 	}
+
 }
