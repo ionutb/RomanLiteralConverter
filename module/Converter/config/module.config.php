@@ -9,7 +9,7 @@ return
 						'route'    => '/',
 						'defaults' => array(
 							'controller' => 'Application\Controller\Index',
-							'action'     => 'index2',
+							'action'     => 'index',
 						),
 					),
 				),

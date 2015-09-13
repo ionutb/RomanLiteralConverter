@@ -2,6 +2,7 @@
 
 namespace Converter\Controller;
 
+use Converter\Model\Convert;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 
@@ -9,7 +10,14 @@ class IndexController extends AbstractActionController
 {
 	public  function convertToRomanAction()
 	{
-		return new ViewModel();
+		$decimal = $this->params()->fromRoute('id');
+		$convert = new Convert();
+
+		$romanNumber = $convert->convertToRoman($decimal);
+		$view =  new ViewModel();
+		$view->setVariable('response', $romanNumber);
+		$view->setVariable('decimal', $decimal);
+		return $view;
 	}
 	public function getAutoloaderConfig()
 	{

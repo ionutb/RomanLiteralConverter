@@ -35,9 +35,9 @@ class Convert
 			throw new InvalidArgumentException("number must be positive");
 		}
 
-		if (!is_int($number))
+		if (!is_numeric($number))
 		{
-			throw new InvalidArgumentException("number must be integer");
+			throw new InvalidArgumentException("number must be numeric :)");
 		}
 
 		if ($number > static::MAX_NUMBER)
