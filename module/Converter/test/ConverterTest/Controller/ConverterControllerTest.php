@@ -14,7 +14,7 @@ class ConverterControllerTest extends AbstractControllerTestCase
 		parent::setUp();
 	}
 
-	public function testIndexActionCanBeAccessed()
+	public function testConvertActionCanBeAccessed()
 	{
 		$this->dispatch('/converter');
 		$this->assertResponseStatusCode(200);
@@ -22,5 +22,6 @@ class ConverterControllerTest extends AbstractControllerTestCase
 		$this->assertControllerName('Converter\Controller\Index');
 		$this->assertControllerClass('IndexController');
 		$this->assertMatchedRouteName('convert-route');
+		$this->assertActionName('convert');
 	}
 }
