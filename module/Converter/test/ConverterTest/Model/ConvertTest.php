@@ -25,6 +25,8 @@ class ConvertTest extends PHPUnit_Framework_TestCase {
 		[3999, 'MMMCMXCIX']
 	);
 
+	private $badValues = array(-10, 0, 32.4, 4000);
+
 
 	public function setUp()
 	{
@@ -38,5 +40,15 @@ class ConvertTest extends PHPUnit_Framework_TestCase {
 			list($decimal, $romanLiteral) = $item;
 			$this->assertEquals($romanLiteral, $converter->convertToRoman($decimal));
 		}
+	}
+
+	public function testConvertIllegalValues() {
+		$this->setExpectedException('InvalidArgumentException');
+		$converter = new \Converter\Model\Convert();
+		foreach ($this->badValues as $badValue)
+		{
+			$converter->convertToRoman($badValue);
+		}
+
 	}
 }

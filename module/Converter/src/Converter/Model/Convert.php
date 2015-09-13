@@ -1,6 +1,8 @@
 <?php
 namespace Converter\Model;
 
+use Zend\Mvc\Exception\InvalidArgumentException;
+
 class Convert
 {
 	// we store numerals in an ordered array
@@ -20,12 +22,29 @@ class Convert
 		['I',  1],
 	);
 
+	const MAX_NUMBER = 3999;
+
 	/**
 	 * @param $number convert a number into roman representation
 	 * @return string
 	 */
 	public function convertToRoman($number)
 	{
+		if ($number <= 0)
+		{
+			throw new InvalidArgumentException("number must be positive");
+		}
+
+		if (!is_int($number))
+		{
+			throw new InvalidArgumentException("number must be integer");
+		}
+
+		if ($number > static::MAX_NUMBER)
+		{
+			throw new InvalidArgumentException("number must be less than 3999");
+		}
+
 		$result = '';
 		foreach (static::$numeralMapping as $map)
 		{
