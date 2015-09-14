@@ -2,9 +2,14 @@
 namespace Converter\Model;
 
 use Zend\Mvc\Exception\InvalidArgumentException;
+use Zend\ServiceManager\ServiceLocatorAwareInterface;
+use Zend\ServiceManager\ServiceLocatorInterface;
 
-class Convert
+class Convert implements ServiceLocatorAwareInterface
 {
+	const MAX_NUMBER = 3999;
+	protected $services;
+
 	// we store numerals in an ordered array
 	private static $numeralMapping = array(
 		['M', 1000],
@@ -22,15 +27,12 @@ class Convert
 		['I',  1],
 	);
 
-	const MAX_NUMBER = 3999;
-
 	/**
 	 * @param $number convert a number into roman representation
 	 * @return string
 	 */
 	public function convertToRoman($number)
 	{
-
 		if (!is_numeric($number))
 		{
 			throw new InvalidArgumentException("number_not_numeric");
@@ -58,6 +60,16 @@ class Convert
 			}
 		}
 		return $result;
+	}
+
+	public function setServiceLocator(ServiceLocatorInterface $serviceLocator)
+	{
+		$this->services = $serviceLocator;
+	}
+
+	public function getServiceLocator()
+	{
+		return $this->services;
 	}
 
 }

@@ -52,6 +52,26 @@ return
 				__DIR__ . '/../view',
 			),
 		),
+		'service_manager' => array(
+			'abstract_factories' => array(
+				'Zend\Cache\Service\StorageCacheAbstractServiceFactory',
+			),
+			'factories' => array(
+				'Zend\Log\Logger' => function($sm)
+				{
+					$logger = new \Zend\Log\Logger;
+					$writer = new \Zend\Log\Writer\Stream(realpath('.\logs\log'.date('Y-m-d').'-error.log'));
+					$logger->addWriter($writer);
+					/*
+					* usage :
+					$logger = $this->getServiceLocator()->get('Zend\Log\Logger');
+					$logger->log(LOG_DEBUG, "convert to ".$number);
+					*/
+
+					return $logger;
+				},
+			),
+		),
 
 
 

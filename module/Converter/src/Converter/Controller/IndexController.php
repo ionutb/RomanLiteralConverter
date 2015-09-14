@@ -23,6 +23,7 @@ class IndexController extends AbstractActionController
 	{
 		$decimal = $this->params()->fromPost('number');
 		$convert = new Convert();
+		$convert->setServiceLocator($this->getServiceLocator());
 		try {
 			$romanNumber = $convert->convertToRoman($decimal);
 		} catch (InvalidArgumentException $ex)
