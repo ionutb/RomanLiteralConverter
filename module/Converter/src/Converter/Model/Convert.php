@@ -1,11 +1,15 @@
 <?php
 namespace Converter\Model;
 
+use Converter\Log;
+use Zend\Cache\Exception\ExtensionNotLoadedException;
+use Zend\Cache\StorageFactory;
+use Zend\ModuleManager\Feature\AutoloaderProviderInterface;
 use Zend\Mvc\Exception\InvalidArgumentException;
 use Zend\ServiceManager\ServiceLocatorAwareInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
 
-class Convert implements ServiceLocatorAwareInterface
+class Convert
 {
 	const MAX_NUMBER = 3999;
 	protected $services;
@@ -27,8 +31,11 @@ class Convert implements ServiceLocatorAwareInterface
 		['I',  1],
 	);
 
+	private static $cache;
+
 	/**
 	 * @param $number convert a number into roman representation
+	 * @throws InvalidArgumentException
 	 * @return string
 	 */
 	public function convertToRoman($number)
@@ -60,16 +67,6 @@ class Convert implements ServiceLocatorAwareInterface
 			}
 		}
 		return $result;
-	}
-
-	public function setServiceLocator(ServiceLocatorInterface $serviceLocator)
-	{
-		$this->services = $serviceLocator;
-	}
-
-	public function getServiceLocator()
-	{
-		return $this->services;
 	}
 
 }

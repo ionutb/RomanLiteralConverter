@@ -4,27 +4,38 @@ namespace Converter\Controller;
 
 use Converter\Model\Convert;
 
+use Zend\Db\TableGateway\Exception\RuntimeException;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\Mvc\Exception\InvalidArgumentException;
 use Zend\View\Model\ViewModel;
 
 class IndexController extends AbstractActionController
 {
+
+	/**
+	 * @param array $variables
+	 * @return ViewModel
+	 */
+	protected function _getViewModel($variables = null)
+	{
+		return new \Zend\View\Model\ViewModel($variables);
+	}
+
 	public function indexAction()
 	{
-		$error = $this->params()->fromRoute('error');
-		$view =  new ViewModel();
-		$view->setVariable('error', $this->params()->fromRoute('error'));
-		$view->setVariable('decimal', $this->params()->fromRoute('decimal'));
-		return $view;
-
+		return $this->_getViewModel(
+			array(
+				'error' => $this->params()->fromRoute('error'),
+				'decimal' => $this->params()->fromRoute('decimal')
+			)
+		);
 	}
+
 	public  function convertToRomanAction()
 	{
 		$decimal = $this->params()->fromPost('number');
-		$convert = new Convert();
-		$convert->setServiceLocator($this->getServiceLocator());
 		try {
+			$convert = new Convert();
 			$romanNumber = $convert->convertToRoman($decimal);
 		} catch (InvalidArgumentException $ex)
 		{
@@ -34,10 +45,13 @@ class IndexController extends AbstractActionController
 				'decimal' => $decimal
 			));
 		}
-		$view =  new ViewModel();
-		$view->setVariable('response', $romanNumber);
-		$view->setVariable('decimal', $decimal);
-		return $view;
+
+		return $this->_getViewModel(
+			array (
+				'response' => $romanNumber,
+				'decimal' => $decimal
+			)
+		);
 	}
 	public function getAutoloaderConfig()
 	{

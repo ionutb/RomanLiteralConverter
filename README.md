@@ -57,6 +57,6 @@ Unit tests are located in \RomanLiteralConverter\module\Converter\test
 
 You need to download  [PHP Unit](https://phpunit.de/) and run the utilty in the above path. 
 
-`cd <path_to_app>`
+`cd <path_to_test_directory>`
 
 `phpunit`

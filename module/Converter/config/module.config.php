@@ -1,4 +1,5 @@
 <?php
+
 return
 	array(
 		'router' => array(
@@ -37,8 +38,8 @@ return
 			),
 		),
 		'view_manager' => array(
-			'display_not_found_reason' => true,
-			'display_exceptions'       => true,
+			'display_not_found_reason' => APPLICATION_ENV != 'production',
+			'display_exceptions'       => APPLICATION_ENV != 'production',
 			'doctype'                  => 'HTML5',
 			'not_found_template'       => 'error/404',
 			'exception_template'       => 'error/index',
@@ -55,22 +56,7 @@ return
 		'service_manager' => array(
 			'abstract_factories' => array(
 				'Zend\Cache\Service\StorageCacheAbstractServiceFactory',
-			),
-			'factories' => array(
-				'Zend\Log\Logger' => function($sm)
-				{
-					$logger = new \Zend\Log\Logger;
-					$writer = new \Zend\Log\Writer\Stream(realpath('.\logs\log'.date('Y-m-d').'-error.log'));
-					$logger->addWriter($writer);
-					/*
-					* usage :
-					$logger = $this->getServiceLocator()->get('Zend\Log\Logger');
-					$logger->log(LOG_DEBUG, "convert to ".$number);
-					*/
-
-					return $logger;
-				},
-			),
+			)
 		),
 
 

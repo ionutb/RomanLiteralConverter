@@ -2,7 +2,7 @@
 /**
 this is the global config. each module will have its own config merged into this one when loaded
  */
-return array(
+$config = array(
 	//array of module namespaces used in the application.
 	'modules' => array(
 		'Converter',
@@ -18,3 +18,12 @@ return array(
 		),
 	)
 );
+
+
+$localAppConfigFilename = 'config/application.config.' . APPLICATION_ENV . '.php';
+if (is_readable($localAppConfigFilename)) {
+	$config = \Zend\Stdlib\ArrayUtils::merge($config, require($localAppConfigFilename));
+}
+
+return $config;
+
