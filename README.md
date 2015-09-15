@@ -10,13 +10,15 @@ It runs on both Windows and Unix environments on Apache and IIS.
 Installation
 ---------------------------
 
-1. Clone the github repository
-
+1.  Clone the github repository
 `git clone https://github.com/ionutb/RomanLiteralConverter.git`
 
-2. Cd into the directory and use [Composer](https://getcomposer.org/) to install dependencies
-
+2.  Cd into the directory and use [Composer](https://getcomposer.org/) to install dependencies
 `    composer install`
+
+3.  Make sure data and logs file are writable
+`    chmod -R 777 data`
+`    chmod -R 777 logs`
 
 
 Web server setup
@@ -44,12 +46,13 @@ project.
 `a2enmod rewrite`
 `/etc/init.d/apache2 restart`
 
+
 ### IIS setup
 
 Simply create a new site and set its physical address to the public directory of the
 project. 
 
-**Caveat**: You need to enable [Url Rewrite](http://www.iis.net/learn/extensions/url-rewrite-module/using-the-url-rewrite-module)
+**Caveat**: You need to enable [Url Rewrite](http://www.iis.net/learn/extensions/url-rewrite-module/using-the-url-rewrite-module), import rules found in public/.htaccess file, and then add the generated web.config file to .gitignore
 
 Testing
 ---------------------------
