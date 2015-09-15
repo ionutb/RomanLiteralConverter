@@ -43,7 +43,9 @@ project.
         </Directory>
     </VirtualHost>
 **Caveat**: you need to enable mod_rewrite:
+
 `a2enmod rewrite`
+
 `/etc/init.d/apache2 restart`
 
 
@@ -63,3 +65,10 @@ You need to download  [PHP Unit](https://phpunit.de/) and run the utilty in the 
 `cd <path_to_test_directory>`
 
 `phpunit`
+
+### Setting environment variable APPLICATION_ENV 
+The web app turns on/off module caching and displaying of errors based on APPLICATION_ENV (development|production)
+
+Default is "production"
+
+This value can be set in virtual host config (apache) or FastCGI Settings (IIS) 
