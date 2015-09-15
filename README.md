@@ -7,6 +7,13 @@ This web app is a programme that converts a number into a Roman Numeral.
 It uses Zend Framework 2 and was writen as a TDD experiment.
 It runs on both Windows and Unix environments on Apache and IIS.
 
+System Requirements
+------------
+* PHP 5.5 or later
+* Web Server (IIS or Apache)
+* Linux or Windows OS
+* Modern browser
+
 Installation
 ---------------------------
 
@@ -72,3 +79,4 @@ The web app turns on/off module caching and displaying of errors based on APPLIC
 Default is "production"
 
 This value can be set in virtual host config (apache) or FastCGI Settings (IIS) 
+
