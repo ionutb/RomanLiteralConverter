@@ -26,7 +26,7 @@ class Bootstrap
 
 		$env = getenv('APPLICATION_ENV') ? getenv('APPLICATION_ENV') : 'production';
 		define('APPLICATION_ENV', $env);
-		define('LOG_PATH', realpath(APP_ROOT.'\..\logs'));
+		define('LOG_PATH', APP_ROOT.'/../logs');
 
 		$zf2ModulePaths = array(dirname(dirname(__DIR__)));
 		if (($path = static::findParentPath('vendor'))) {

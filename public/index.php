@@ -4,7 +4,7 @@
  * to the application root now.
  */
 define('APP_ROOT', __DIR__);
-define('LOG_PATH', realpath(APP_ROOT.'\..\logs'));
+define('LOG_PATH', APP_ROOT.'/../logs');
 
 
 // Define application environment
@@ -25,7 +25,7 @@ if (php_sapi_name() === 'cli-server') {
 // Setup autoloading
 require 'init_autoloader.php';
 $logger = new Zend\Log\Logger;
-$writer = new Zend\Log\Writer\Stream(realpath(LOG_PATH).DIRECTORY_SEPARATOR.'log'.date('Y-m-d').'-error.log');
+$writer = new Zend\Log\Writer\Stream(LOG_PATH.'/log'.date('Y-m-d').'-error.log');
 $logger->addWriter($writer);
 Zend\Log\Logger::registerErrorHandler($logger);
 
