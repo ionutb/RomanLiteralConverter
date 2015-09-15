@@ -52,7 +52,7 @@ project.
 Simply create a new site and set its physical address to the public directory of the
 project. 
 
-**Caveat**: You need to enable [Url Rewrite](http://www.iis.net/learn/extensions/url-rewrite-module/using-the-url-rewrite-module), import rules found in public/.htaccess file, and then add the generated web.config file to .gitignore
+**Caveat**: You need to enable [Url Rewrite](http://www.iis.net/learn/extensions/url-rewrite-module/using-the-url-rewrite-module) and rename .web.config to web.config
 
 Testing
 ---------------------------
